@@ -8,11 +8,11 @@ function init() {
     canvas = document.createElement('canvas');
     document.body.appendChild(canvas);
     ctx = canvas.getContext("2d");
-
     canvas.width = sw * pixelRatio;
     canvas.height = sh * pixelRatio;
     canvas.style.width = '100%';
     canvas.style.height = '100%';
+    canvas.style.marginTop = '0px';
     canvas.style.backgroundColor = '#141101';
     document.body.style.backgroundColor = '#141101';
     ctx.scale(pixelRatio, pixelRatio);
@@ -37,7 +37,6 @@ function init() {
         });
     }
 
-
     requestAnimationFrame(animate);
 }
 
@@ -51,4 +50,14 @@ function animate() {
 
 window.onload = () => {
     init();
+    setTimeout(() => {
+        disappear = setInterval(() => {
+            canvas.style.marginTop = ((parseFloat(canvas.style.marginTop, 10) + 1) * 1.075) +'px';
+            if ((parseFloat(canvas.style.marginTop, 10) + 1) >= document.body.clientHeight) {
+                clearInterval(disappear);
+            }
+
+            console.log((parseFloat(canvas.style.marginTop, 10) + 1) + ' | ' + document.body.clientHeight)
+         }, 12);
+    }, 3000);
 };
