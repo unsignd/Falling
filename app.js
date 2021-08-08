@@ -13,8 +13,7 @@ function init() {
     canvas.style.width = '100%';
     canvas.style.height = '100%';
     canvas.style.marginTop = '0px';
-    canvas.style.backgroundColor = '#141101';
-    document.body.style.backgroundColor = '#141101';
+    canvas.style.backgroundColor = '#222128';
     ctx.scale(pixelRatio, pixelRatio);
 
     title = new LeonSans({
@@ -44,7 +43,7 @@ function animate() {
     requestAnimationFrame(animate);
 
     ctx.clearRect(0, 0, sw, sh);
-    title.position((sw - title.rect.w) / 2, 400);
+    title.position((sw - title.rect.w) / 2, (sh - title.rect.h) / 2);
     title.draw(ctx);
 }
 
@@ -52,12 +51,10 @@ window.onload = () => {
     init();
     setTimeout(() => {
         disappear = setInterval(() => {
-            canvas.style.marginTop = ((parseFloat(canvas.style.marginTop, 10) + 1) * 1.075) +'px';
+            canvas.style.marginTop = ((parseFloat(canvas.style.marginTop, 10) + 1) * 1.1) +'px';
             if ((parseFloat(canvas.style.marginTop, 10) + 1) >= document.body.clientHeight) {
                 clearInterval(disappear);
             }
-
-            console.log((parseFloat(canvas.style.marginTop, 10) + 1) + ' | ' + document.body.clientHeight)
          }, 12);
     }, 3000);
 };
