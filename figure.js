@@ -1,21 +1,20 @@
-let start = {x: undefined, y: undefined};
-let end = {x: undefined, y: undefined};
-
 export class Figure {
     constructor() {
         this.isClick = false;
         this.sqr = null;
+        this.start = {x: undefined, y: undefined};
+        this.end = {x: undefined, y: undefined};
     }
 
     update(event) {
         if (this.isClick) {
-            start = {x: event.clientX, y: event.clientY};
+            this.start = {x: event.clientX, y: event.clientY};
 
             this.isClick = null;
         } 
         
         if (this.isClick !== false) {
-            end = {x: event.clientX, y: event.clientY};
+            this.end = {x: event.clientX, y: event.clientY};
         }
     }
 
@@ -26,25 +25,25 @@ export class Figure {
     endClick() {
         this.isClick = false;
 
-        start = {x: undefined, y: undefined};
-        end = {x: undefined, y: undefined};
+        this.start = {x: undefined, y: undefined};
+        this.end = {x: undefined, y: undefined};
     }
 
     draw(ctx) {
-        if (this.isClick === false || end.x === null || end.y === null) {
+        if (this.isClick === false || this.end.x === null || this.end.y === null) {
             return;
         }
 
-        this.sqr = this.getSquare(start, end);
+        this.sqr = this.getSquare(this.start, this.end);
 
         ctx.beginPath();
         ctx.fillStyle = '#ffffff';
 
-        ctx.moveTo(start.x, start.y);
+        ctx.moveTo(this.start.x, this.start.y);
         ctx.lineTo(this.sqr[0].x, this.sqr[0].y);
         ctx.lineTo(this.sqr[1].x, this.sqr[1].y);
     
-        ctx.moveTo(end.x, end.y);
+        ctx.moveTo(this.end.x, this.end.y);
         ctx.lineTo(this.sqr[0].x, this.sqr[0].y);
         ctx.lineTo(this.sqr[1].x, this.sqr[1].y);
         ctx.fill();
