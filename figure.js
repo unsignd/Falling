@@ -10,12 +10,11 @@ export class Figure {
     update(event) {
         if (this.isClick) {
             start = {x: event.clientX, y: event.clientY};
-            end = {x: undefined, y: undefined};
 
             this.isClick = null;
         } 
         
-        if (this.isClick != false) {
+        if (this.isClick !== false) {
             end = {x: event.clientX, y: event.clientY};
         }
     }
@@ -26,37 +25,36 @@ export class Figure {
 
     endClick() {
         this.isClick = false;
+
+        start = {x: undefined, y: undefined};
+        end = {x: undefined, y: undefined};
     }
 
     draw(ctx) {
-        console.log(this.isClick)
-        if (this.isClick != false) {
-            if (end.x === null || end.y === null) {
-                return;
-            }
-
-            this.sqr = this.getSquare(start, end);
-
-            ctx.beginPath();
-            ctx.fillStyle = '#ffffff';
-
-            ctx.moveTo(start.x, start.y);
-            ctx.lineTo(this.sqr[0].x, this.sqr[0].y);
-            ctx.lineTo(this.sqr[1].x, this.sqr[1].y);
-            
-            ctx.moveTo(end.x, end.y);
-            ctx.lineTo(this.sqr[0].x, this.sqr[0].y);
-            ctx.lineTo(this.sqr[1].x, this.sqr[1].y);
-
-            ctx.fill();
-            ctx.closePath();
+        if (this.isClick === false || end.x === null || end.y === null) {
+            return;
         }
+
+        this.sqr = this.getSquare(start, end);
+
+        ctx.beginPath();
+        ctx.fillStyle = '#ffffff';
+
+        ctx.moveTo(start.x, start.y);
+        ctx.lineTo(this.sqr[0].x, this.sqr[0].y);
+        ctx.lineTo(this.sqr[1].x, this.sqr[1].y);
+    
+        ctx.moveTo(end.x, end.y);
+        ctx.lineTo(this.sqr[0].x, this.sqr[0].y);
+        ctx.lineTo(this.sqr[1].x, this.sqr[1].y);
+        ctx.fill();
+        ctx.closePath();
     }
 
     getSquare(a, b) {
         const middle = (i, j) => (i + j) / 2;
         const halfDiagonal = (i, j) => (i - j) / 2;
-    
+
         return [{
             x: middle(a.x, b.x) - halfDiagonal(a.y, b.y),
             y: middle(a.y, b.y) + halfDiagonal(a.x, b.x),
