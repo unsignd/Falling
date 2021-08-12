@@ -19,9 +19,9 @@ class App {
         window.addEventListener('resize', this.resize.bind(this), false);
         this.resize();
 
-        window.addEventListener(moveEvt, this.figure.update, false);
-        window.addEventListener(startEvt, this.figure.startClick, false);
-        window.addEventListener(endEvt, this.figure.endClick, false);
+        window.addEventListener(moveEvt, this.figure.update.bind(this.figure), false);
+        window.addEventListener(startEvt, this.figure.startClick.bind(this.figure), false);
+        window.addEventListener(endEvt, this.figure.endClick.bind(this.figure), false);
 
         requestAnimationFrame(this.animate.bind(this));
     }
