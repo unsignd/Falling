@@ -60,6 +60,7 @@ export class Figure {
                 x: this.end.x,
                 y: this.end.y,
             },
+            speed: Math.random() * 50 + 10,
         });
 
         this.start = {
@@ -77,7 +78,7 @@ export class Figure {
             this.sqr = this.getSquare(this.rects[i].vt1, this.rects[i].vt4);
             
             ctx.beginPath();
-            ctx.fillStyle = '#ffffff50';
+            ctx.fillStyle = '#ffffff';
     
             ctx.moveTo(this.rects[i].vt1.x, this.rects[i].vt1.y);
             ctx.lineTo(this.rects[i].vt2.x, this.rects[i].vt2.y);
@@ -88,13 +89,20 @@ export class Figure {
             ctx.lineTo(this.rects[i].vt3.x, this.rects[i].vt3.y);
             ctx.fill(); 
             ctx.closePath();
+
+            this.rects[i].vt1.y += this.rects[i].speed / 5;
+            this.rects[i].vt2.y += this.rects[i].speed / 5;
+            this.rects[i].vt3.y += this.rects[i].speed / 5;
+            this.rects[i].vt4.y += this.rects[i].speed / 5;
+
+            this.rects[i].speed *= 1.1;
         }
 
         if (this.isClick !== false && this.end.x !== null || this.end.y !== null) {
             this.sqr = this.getSquare(this.start, this.end);
 
             ctx.beginPath();
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = '#00000050';
     
             ctx.moveTo(this.start.x, this.start.y);
             ctx.lineTo(this.sqr[0].x, this.sqr[0].y);
