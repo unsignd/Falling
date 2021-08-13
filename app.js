@@ -38,6 +38,7 @@ class App {
         this.ctx.scale(2, 2);
 
         this.waveGroup.resize(this.stageWidth, this.stageHeight);
+        this.figure.rects = [];
     }
 
     animate() {
@@ -46,7 +47,7 @@ class App {
         this.figure.draw(this.ctx);
         this.waveGroup.draw(this.ctx);
 
-        this.animate.bind(this)
+        this.animate.bind(this);
     }
 
     isMobile() {
