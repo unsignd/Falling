@@ -1,5 +1,6 @@
 import { WaveGroup } from './wavegroup.js';
 import { Figure } from './figure.js';
+import { FpsCtrl } from './fpsCtrl.js';
 
 class App {
     constructor() {
@@ -16,6 +17,8 @@ class App {
         const moveEvt = (mobile) ? 'touchmove' : 'mousemove';
         const endEvt = (mobile) ? 'touchend' : 'mouseup';
 
+        const fpsCtrl = new FpsCtrl(30, this.animate.bind(this));
+
         window.addEventListener('resize', this.resize.bind(this), false);
         this.resize();
 
@@ -23,7 +26,7 @@ class App {
         window.addEventListener(startEvt, this.figure.startClick.bind(this.figure), false);
         window.addEventListener(endEvt, this.figure.endClick.bind(this.figure), false);
 
-        requestAnimationFrame(this.animate.bind(this));
+        fpsCtrl.start();
     }
 
     resize() {
