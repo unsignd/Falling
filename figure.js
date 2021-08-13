@@ -75,23 +75,6 @@ export class Figure {
     }
 
     draw(ctx) {
-        if (this.isClick !== false && this.end.x !== null || this.end.y !== null) {
-            this.sqr = this.getSquare(this.start, this.end);
-
-            ctx.beginPath();
-            ctx.fillStyle = '#ffffff';
-    
-            ctx.moveTo(this.start.x, this.start.y);
-            ctx.lineTo(this.sqr[0].x, this.sqr[0].y);
-            ctx.lineTo(this.sqr[1].x, this.sqr[1].y);
-        
-            ctx.moveTo(this.end.x, this.end.y);
-            ctx.lineTo(this.sqr[0].x, this.sqr[0].y);
-            ctx.lineTo(this.sqr[1].x, this.sqr[1].y);
-            ctx.fill();
-            ctx.closePath();
-        }
-        
         for (let i = 0; i < this.rects.length; i++) {
             this.sqr = this.getSquare(this.rects[i].vt1, this.rects[i].vt4);
             
@@ -106,6 +89,23 @@ export class Figure {
             ctx.lineTo(this.rects[i].vt2.x, this.rects[i].vt2.y);
             ctx.lineTo(this.rects[i].vt3.x, this.rects[i].vt3.y);
             ctx.fill(); 
+            ctx.closePath();
+        }
+
+        if (this.isClick !== false && this.end.x !== null || this.end.y !== null) {
+            this.sqr = this.getSquare(this.start, this.end);
+
+            ctx.beginPath();
+            ctx.fillStyle = '#ffffff';
+    
+            ctx.moveTo(this.start.x, this.start.y);
+            ctx.lineTo(this.sqr[0].x, this.sqr[0].y);
+            ctx.lineTo(this.sqr[1].x, this.sqr[1].y);
+        
+            ctx.moveTo(this.end.x, this.end.y);
+            ctx.lineTo(this.sqr[0].x, this.sqr[0].y);
+            ctx.lineTo(this.sqr[1].x, this.sqr[1].y);
+            ctx.fill();
             ctx.closePath();
         }
     }
