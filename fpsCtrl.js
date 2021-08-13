@@ -1,56 +1,46 @@
-export class FpsCtrl {
-    constructor(fps, callback) {
-        this.fps = fps;
-        this.callback = callback;
-        this.delay = 1000 / fps;
-        this.time = null;
-        this.frame = -1;
-        this.isPlaying = false;
-        this.tref;
+export function FpsCtrl(fps, callback) {
 
-        this.frameRate = (newfps) => {
-            if (!arguments.length) {
-                return this.fps;
-            }
+    var delay = 1000 / fps,
+        time = null,
+        frame = -1,
+        tref
 
-            this.fps = newfps;
-            this.delay = 1000 / this.fps;
-            this.frame = -1;
-            this.time = null;
-        };
-
-        this.start = () => {
-            if (!this.isPlaying) {
-                this.isPlaying = true;
-                this.tref = requestAnimationFrame(this.loop);
-            }
+    function loop(timestamp) {
+        if (time === null) time = timestamp
+        var seg = Math.floor((timestamp - time) / delay)
+        if (seg > frame) {
+            frame = seg
+            callback({
+                time: timestamp,
+                frame: frame
+            })
         }
+        tref = requestAnimationFrame(loop)
+    }
 
-        this.pause = () => {
-            if (this.isPlaying) {
-                cancelAnimationFrame(this.tref);
-                this.isPlaying = false;
-                this.time = null;
-                this.frame = -1;
-            }
+    this.isPlaying = false
+
+    this.frameRate = function(newfps) {
+        if (!arguments.length) return fps
+        fps = newfps
+        delay = 1000 / fps
+        frame = -1
+        time = null
+    }
+
+    this.start = function() {
+        if (!this.isPlaying) {
+            this.isPlaying = true
+            tref = requestAnimationFrame(loop)
         }
     }
 
-    loop(timestamp) {
-        if (time === null) {
-            this.time = timestamp;
+    this.pause = function() {
+        if (this.isPlaying) {
+            cancelAnimationFrame(tref)
+            this.isPlaying = false
+            time = null
+            frame = -1
         }
-
-        this.seg = Math.floor((timestamp - this.time) / this.delay);
-
-        if (this.seg > this.frame) {
-            this.frame = this.seg;
-            callback({
-                time: timestamp,
-                frame: this.frame,
-            });
-        }
-
-        this.tref = requestAnimationFrame(this.loop);
     }
 }
