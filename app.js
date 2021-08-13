@@ -17,7 +17,7 @@ class App {
         const moveEvt = (mobile) ? 'touchmove' : 'mousemove';
         const endEvt = (mobile) ? 'touchend' : 'mouseup';
 
-        const fpsCtrl = new FpsCtrl(30, this.animate.bind(this));
+        const fpsCtrl = new FpsCtrl(60, this.animate.bind(this));
 
         window.addEventListener('resize', this.resize.bind(this), false);
         this.resize();
@@ -46,7 +46,7 @@ class App {
         this.figure.draw(this.ctx);
         this.waveGroup.draw(this.ctx);
 
-        requestAnimationFrame(this.animate.bind(this))
+        this.animate.bind(this)
     }
 
     isMobile() {
