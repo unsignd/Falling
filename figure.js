@@ -77,7 +77,7 @@ export class Figure {
             this.sqr = this.getSquare(this.rects[i].vt1, this.rects[i].vt4);
             
             ctx.beginPath();
-            ctx.fillStyle = '#ff0000';
+            ctx.fillStyle = '#ffffff50';
     
             ctx.moveTo(this.rects[i].vt1.x, this.rects[i].vt1.y);
             ctx.lineTo(this.rects[i].vt2.x, this.rects[i].vt2.y);
