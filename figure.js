@@ -36,15 +36,6 @@ export class Figure {
 
     startClick() {
         this.isClick = true;
-
-        this.start = {
-            x: undefined,
-            y: undefined,
-        };
-        this.end = {
-            x: undefined,
-            y: undefined,
-        };
     }
 
     endClick() {
@@ -71,7 +62,14 @@ export class Figure {
             },
         });
 
-        console.log(this.rects);
+        this.start = {
+            x: undefined,
+            y: undefined,
+        };
+        this.end = {
+            x: undefined,
+            y: undefined,
+        };
     }
 
     draw(ctx) {
