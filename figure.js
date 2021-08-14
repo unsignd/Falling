@@ -25,6 +25,7 @@ export class Figure {
             '#e872d6',
             '#ffffff',
         ];
+        this.prevColor = '';
     }
 
     update(event) {
@@ -51,8 +52,16 @@ export class Figure {
 
     endClick() {
         this.sqr = this.getSquare(this.start, this.end);
-        this.color = 
         this.isClick = false;
+
+        while (true) {
+            this.color = this.colorList[Math.round(Math.random() * 8)];
+
+            if (this.color !== this.prevColor) {
+                this.prevColor = this.color;
+                break;
+            }
+        }
 
         this.rects.push({
             vt1: {
@@ -72,7 +81,7 @@ export class Figure {
                 y: this.end.y,
             },
             speed: Math.random() * 10 + 10,
-            color: this.colorList[Math.round(Math.random() * 8)],
+            color: this.color,
         });
 
         this.start = {
