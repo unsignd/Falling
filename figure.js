@@ -80,8 +80,9 @@ export class Figure {
                 x: this.end.x,
                 y: this.end.y,
             },
-            speed: Math.random() * 10 + 10,
+            speed: Math.random() * 10 + 25,
             color: this.color,
+            side: this.getSide(this.start, this.end),
         });
 
         this.start = {
@@ -99,7 +100,6 @@ export class Figure {
 
         for (let i = 0; i < this.rects.length; i++) {
             this.sqr = this.getSquare(this.rects[i].vt1, this.rects[i].vt4);
-            this.speed = this.rects[i].speed;
             this.lowestY = Math.min(this.rects[i].vt1.y, this.rects[i].vt2.y, this.rects[i].vt3.y, this.rects[i].vt4.y);
             
             ctx.beginPath();
@@ -114,15 +114,15 @@ export class Figure {
             ctx.lineTo(this.rects[i].vt3.x, this.rects[i].vt3.y);
             ctx.fill(); 
             ctx.closePath()
-            this.rects[i].vt1.y += this.speed / 20 + 1;
-            this.rects[i].vt2.y += this.speed / 20 + 1;
-            this.rects[i].vt3.y += this.speed / 20 + 1;
-            this.rects[i].vt4.y += this.speed / 20 + 1;
+            this.rects[i].vt1.y += this.rects[i].speed / 10 + 1;
+            this.rects[i].vt2.y += this.rects[i].speed / 10 + 1;
+            this.rects[i].vt3.y += this.rects[i].speed / 10 + 1;
+            this.rects[i].vt4.y += this.rects[i].speed / 10 + 1;
 
-            if (this.lowestY < this.stageHeight / 2) {
-                this.rects[i].speed *= 1.1;
+            if (this.lowestY < this.stageHeight / 1.5) {
+                this.rects[i].speed += this.rects[i].side / 3;
             } else {
-                this.rects[i].speed *= 0.9;
+                this.rects[i].speed *= 0.85;
 
                 // this.rects[i].vt1.y += Math.random() / 3;
                 // this.rects[i].vt2.y -= Math.random() / 3;
@@ -160,5 +160,9 @@ export class Figure {
             x: middle(a.x, b.x) + halfDiagonal(a.y, b.y),
             y: middle(a.y, b.y) - halfDiagonal(a.x, b.x),
         }];
+    }
+
+    getSide(a, b) {
+        return Math.sqrt(Math.abs(a.x - b.x) + Math.abs(a.y - b.y));
     }
 }
