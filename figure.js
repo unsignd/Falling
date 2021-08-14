@@ -16,6 +16,7 @@ export class Figure {
         this.rects = [];
         this.colorList = [
             '#f55c51',
+            '#ff8c40',
             '#f0bc54',
             '#d4fc77',
             '#69ffc8',
@@ -55,7 +56,7 @@ export class Figure {
         this.isClick = false;
 
         while (true) {
-            this.color = this.colorList[Math.round(Math.random() * 8)];
+            this.color = this.colorList[Math.round(Math.random() * 9)];
 
             if (this.color !== this.prevColor) {
                 this.prevColor = this.color;
@@ -81,6 +82,7 @@ export class Figure {
                 y: this.end.y,
             },
             speed: Math.random() * 10 + 25,
+            defaultSpeed: Math.random() * 2 + 1,
             color: this.color,
             side: this.getSide(this.start, this.end),
         });
@@ -114,12 +116,12 @@ export class Figure {
             ctx.lineTo(this.rects[i].vt3.x, this.rects[i].vt3.y);
             ctx.fill(); 
             ctx.closePath()
-            this.rects[i].vt1.y += this.rects[i].speed / 10 + 1;
-            this.rects[i].vt2.y += this.rects[i].speed / 10 + 1;
-            this.rects[i].vt3.y += this.rects[i].speed / 10 + 1;
-            this.rects[i].vt4.y += this.rects[i].speed / 10 + 1;
+            this.rects[i].vt1.y += this.rects[i].speed / 10 + this.rects[i].defaultSpeed;
+            this.rects[i].vt2.y += this.rects[i].speed / 10 + this.rects[i].defaultSpeed;
+            this.rects[i].vt3.y += this.rects[i].speed / 10 + this.rects[i].defaultSpeed;
+            this.rects[i].vt4.y += this.rects[i].speed / 10 + this.rects[i].defaultSpeed;
 
-            if (this.lowestY < this.stageHeight / 1.5) {
+            if (this.lowestY < this.stageHeight / 1.6) {
                 this.rects[i].speed += this.rects[i].side / 3;
             } else {
                 this.rects[i].speed *= 0.85;
