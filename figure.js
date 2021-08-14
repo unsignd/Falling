@@ -60,7 +60,7 @@ export class Figure {
                 x: this.end.x,
                 y: this.end.y,
             },
-            speed: Math.random() * 50 + 10,
+            speed: Math.random() * 10 + 10,
         });
 
         this.start = {
