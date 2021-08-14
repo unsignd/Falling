@@ -100,7 +100,7 @@ export class Figure {
         for (let i = 0; i < this.rects.length; i++) {
             this.sqr = this.getSquare(this.rects[i].vt1, this.rects[i].vt4);
             this.speed = this.rects[i].speed;
-            this.lowestY = Math.max(this.rects[i].vt1.y, this.rects[i].vt2.y, this.rects[i].vt3.y, this.rects[i].vt4.y);
+            this.lowestY = Math.min(this.rects[i].vt1.y, this.rects[i].vt2.y, this.rects[i].vt3.y, this.rects[i].vt4.y);
             
             ctx.beginPath();
             ctx.fillStyle = this.rects[i].color;
@@ -119,7 +119,7 @@ export class Figure {
             this.rects[i].vt3.y += this.speed / 20 + 1;
             this.rects[i].vt4.y += this.speed / 20 + 1;
 
-            if (this.lowestY < this.stageHeight / 1.25) {
+            if (this.lowestY < this.stageHeight / 2) {
                 this.rects[i].speed *= 1.1;
             } else {
                 this.rects[i].speed *= 0.9;
