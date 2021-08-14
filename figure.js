@@ -14,6 +14,17 @@ export class Figure {
         };
 
         this.rects = [];
+        this.colorList = [
+            '#f55c51',
+            '#f0bc54',
+            '#d4fc77',
+            '#69ffc8',
+            '#69aaff',
+            '#7369e0',
+            '#a566e3',
+            '#e872d6',
+            '#ffffff',
+        ];
     }
 
     update(event) {
@@ -40,7 +51,7 @@ export class Figure {
 
     endClick() {
         this.sqr = this.getSquare(this.start, this.end);
-
+        this.color = 
         this.isClick = false;
 
         this.rects.push({
@@ -61,6 +72,7 @@ export class Figure {
                 y: this.end.y,
             },
             speed: Math.random() * 10 + 10,
+            color: this.colorList[Math.round(Math.random() * 8)],
         });
 
         this.start = {
@@ -73,12 +85,16 @@ export class Figure {
         };
     }
 
-    draw(ctx) {
+    draw(ctx, stageHeight) {
+        this.stageHeight = stageHeight;
+
         for (let i = 0; i < this.rects.length; i++) {
             this.sqr = this.getSquare(this.rects[i].vt1, this.rects[i].vt4);
+            this.speed = this.rects[i].speed;
+            this.lowestY = Math.max(this.rects[i].vt1.y, this.rects[i].vt2.y, this.rects[i].vt3.y, this.rects[i].vt4.y);
             
             ctx.beginPath();
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = this.rects[i].color;
     
             ctx.moveTo(this.rects[i].vt1.x, this.rects[i].vt1.y);
             ctx.lineTo(this.rects[i].vt2.x, this.rects[i].vt2.y);
@@ -88,14 +104,22 @@ export class Figure {
             ctx.lineTo(this.rects[i].vt2.x, this.rects[i].vt2.y);
             ctx.lineTo(this.rects[i].vt3.x, this.rects[i].vt3.y);
             ctx.fill(); 
-            ctx.closePath();
+            ctx.closePath()
+            this.rects[i].vt1.y += this.speed / 20 + 1;
+            this.rects[i].vt2.y += this.speed / 20 + 1;
+            this.rects[i].vt3.y += this.speed / 20 + 1;
+            this.rects[i].vt4.y += this.speed / 20 + 1;
 
-            this.rects[i].vt1.y += this.rects[i].speed / 5;
-            this.rects[i].vt2.y += this.rects[i].speed / 5;
-            this.rects[i].vt3.y += this.rects[i].speed / 5;
-            this.rects[i].vt4.y += this.rects[i].speed / 5;
+            if (this.lowestY < this.stageHeight / 1.25) {
+                this.rects[i].speed *= 1.1;
+            } else {
+                this.rects[i].speed *= 0.9;
 
-            this.rects[i].speed *= 1.1;
+                // this.rects[i].vt1.y += Math.random() / 3;
+                // this.rects[i].vt2.y -= Math.random() / 3;
+                // this.rects[i].vt3.y += Math.random() / 3;
+                // this.rects[i].vt4.y -= Math.random() / 3;
+            }
         }
 
         if (this.isClick !== false && this.end.x !== null || this.end.y !== null) {

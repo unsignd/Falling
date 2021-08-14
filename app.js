@@ -44,7 +44,7 @@ class App {
     animate() {
         this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
 
-        this.figure.draw(this.ctx);
+        this.figure.draw(this.ctx, this.stageHeight);
         this.waveGroup.draw(this.ctx);
 
         this.animate.bind(this);
