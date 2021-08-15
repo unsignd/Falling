@@ -118,10 +118,10 @@ export class Figure {
             ctx.lineTo(this.rects[i].vt3.x, this.rects[i].vt3.y);
             ctx.fill(); 
             ctx.closePath()
-            this.rects[i].vt1.y += this.rects[i].speed / 10 + this.rects[i].defaultSpeed;
-            this.rects[i].vt2.y += this.rects[i].speed / 10 + this.rects[i].defaultSpeed;
-            this.rects[i].vt3.y += this.rects[i].speed / 10 + this.rects[i].defaultSpeed;
-            this.rects[i].vt4.y += this.rects[i].speed / 10 + this.rects[i].defaultSpeed;
+            this.rects[i].vt1.y += (this.rects[i].speed / 10 + this.rects[i].defaultSpeed) / 924 * this.stageHeight;
+            this.rects[i].vt2.y += (this.rects[i].speed / 10 + this.rects[i].defaultSpeed) / 924 * this.stageHeight;
+            this.rects[i].vt3.y += (this.rects[i].speed / 10 + this.rects[i].defaultSpeed) / 924 * this.stageHeight;
+            this.rects[i].vt4.y += (this.rects[i].speed / 10 + this.rects[i].defaultSpeed) / 924 * this.stageHeight;
 
             if (this.lowestY < this.stageHeight / 1.6) {
                 this.rects[i].speed += this.rects[i].side / 3;
