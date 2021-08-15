@@ -1,3 +1,4 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/unsignd/falling/badge)](https://www.codefactor.io/repository/github/unsignd/falling)
 # Falling
 
 ## Credit
