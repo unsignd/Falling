@@ -171,15 +171,15 @@ export class Figure {
     variationRect(rect) {
         switch (rect.randomNum) {
             case 0:
-                rect.vt1.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
-                rect.vt2.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
-                rect.vt3.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
-                rect.vt4.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
+                rect.vt1.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
+                rect.vt2.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
+                rect.vt3.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
+                rect.vt4.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
             case 1:
-                rect.vt1.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
-                rect.vt2.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
-                rect.vt3.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
-                rect.vt4.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
+                rect.vt1.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
+                rect.vt2.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
+                rect.vt3.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
+                rect.vt4.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
         }
     }
 }
