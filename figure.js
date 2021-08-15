@@ -87,6 +87,7 @@ export class Figure {
             defaultSpeed: Math.random() * 2 + 1,
             color: this.color,
             side: this.getSide(this.start, this.end),
+            randomNum: Math.round(Math.random()),
         });
 
         this.start = {
@@ -123,15 +124,12 @@ export class Figure {
             this.rects[i].vt3.y += (this.rects[i].speed / 10 + this.rects[i].defaultSpeed) / 924 * this.stageHeight;
             this.rects[i].vt4.y += (this.rects[i].speed / 10 + this.rects[i].defaultSpeed) / 924 * this.stageHeight;
 
-            if (this.lowestY < this.stageHeight / 1.6) {
+            if (this.lowestY < this.stageHeight / 1.85) {
                 this.rects[i].speed += this.rects[i].side / 3;
             } else {
-                this.rects[i].speed *= 0.85;
+                this.rects[i].speed *= 0.8;
 
-                // this.rects[i].vt1.y += Math.random() / 3;
-                // this.rects[i].vt2.y -= Math.random() / 3;
-                // this.rects[i].vt3.y += Math.random() / 3;
-                // this.rects[i].vt4.y -= Math.random() / 3;
+                this.variationRect(this.rects[i])
             }
         }
 
@@ -168,5 +166,20 @@ export class Figure {
 
     getSide(a, b) {
         return Math.sqrt(Math.abs(a.x - b.x) + Math.abs(a.y - b.y));
+    }
+
+    variationRect(rect) {
+        switch (rect.randomNum) {
+            case 0:
+                rect.vt1.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
+                rect.vt2.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
+                rect.vt3.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
+                rect.vt4.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
+            case 1:
+                rect.vt1.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
+                rect.vt2.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
+                rect.vt3.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
+                rect.vt4.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 50;
+        }
     }
 }
