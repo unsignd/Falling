@@ -15,18 +15,18 @@ export class Figure {
 
         this.rects = [];
         this.colorList = [
-            '#f55c51',
-            '#ff8c40',
-            '#f0bc54',
-            '#d4fc77',
-            '#8ceb6a',
-            '#69ffc8',
-            '#69aaff',
-            '#7369e0',
-            '#a566e3',
-            '#a357e6',
-            '#e872d6',
-            '#ffffff',
+            'hsl(4, 89%, ',
+            'hsl(24, 100%, ',
+            'hsl(40, 84%, ',
+            'hsl(78, 75%, ',
+            'hsl(104, 73%, ',
+            'hsl(158, 100%, ',
+            'hsl(214, 100%, ',
+            'hsl(245, 66%, ',
+            'hsl(270, 69%, ',
+            'hsl(269, 82%, ',
+            'hsl(284, 95%, ',
+            'hsl(335, 77%, ',
         ];
         this.prevColor = '';
     }
@@ -85,9 +85,13 @@ export class Figure {
             },
             speed: Math.random() * 10 + 25,
             defaultSpeed: Math.random() * 2 + 1,
-            color: this.color,
+
             side: this.getSide(this.start, this.end),
+
             randomNum: Math.round(Math.random()),
+
+            color: this.color,
+            lightness: 60,
         });
 
         this.start = {
@@ -108,7 +112,7 @@ export class Figure {
             this.lowestY = Math.min(this.rects[i].vt1.y, this.rects[i].vt2.y, this.rects[i].vt3.y, this.rects[i].vt4.y);
             
             ctx.beginPath();
-            ctx.fillStyle = this.rects[i].color;
+            ctx.fillStyle = `${this.rects[i].color}${this.rects[i].lightness}%)`;
     
             ctx.moveTo(this.rects[i].vt1.x, this.rects[i].vt1.y);
             ctx.lineTo(this.rects[i].vt2.x, this.rects[i].vt2.y);
@@ -127,9 +131,9 @@ export class Figure {
             if (this.lowestY < this.stageHeight / 1.85) {
                 this.rects[i].speed += this.rects[i].side / 3;
             } else {
+                // this.rects[i].color = hsla
                 this.rects[i].speed *= 0.8;
-
-                this.variationRect(this.rects[i])
+                this.variationRect(this.rects[i]);
             }
         }
 
