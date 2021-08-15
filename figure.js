@@ -19,10 +19,12 @@ export class Figure {
             '#ff8c40',
             '#f0bc54',
             '#d4fc77',
+            '#8ceb6a',
             '#69ffc8',
             '#69aaff',
             '#7369e0',
             '#a566e3',
+            '#a357e6',
             '#e872d6',
             '#ffffff',
         ];
@@ -56,7 +58,7 @@ export class Figure {
         this.isClick = false;
 
         while (true) {
-            this.color = this.colorList[Math.round(Math.random() * 9)];
+            this.color = this.colorList[Math.round(Math.random() * (this.colorList.length - 1))];
 
             if (this.color !== this.prevColor) {
                 this.prevColor = this.color;
