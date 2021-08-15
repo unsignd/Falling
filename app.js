@@ -26,9 +26,9 @@ class App {
             window.open('https://github.com/unsignd/Falling');
         });
 
-        window.addEventListener(moveEvt, this.figure.update.bind(this.figure), false);
-        window.addEventListener(startEvt, this.figure.startClick.bind(this.figure), false);
-        window.addEventListener(endEvt, this.figure.endClick.bind(this.figure), false);
+        window.addEventListener('mousemove', this.figure.update.bind(this.figure), false);
+        window.addEventListener('mousedown', this.figure.startClick.bind(this.figure), false);
+        window.addEventListener('mouseup', this.figure.endClick.bind(this.figure), false);
 
         fpsCtrl.start();
     }
