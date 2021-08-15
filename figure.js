@@ -131,7 +131,10 @@ export class Figure {
             if (this.lowestY < this.stageHeight / 1.85) {
                 this.rects[i].speed += this.rects[i].side / 3;
             } else {
-                // this.rects[i].color = hsla
+                if (this.rects[i].lightness < 100) {
+                    this.rects[i].lightness += Math.random() * 0.7;
+                }
+
                 this.rects[i].speed *= 0.8;
                 this.variationRect(this.rects[i]);
             }
