@@ -26,9 +26,7 @@ class App {
             window.open('https://github.com/unsignd/Falling');
         });
 
-        if (startEvt === 'touchstart') {
-            alert('mobile');
-        }
+        console.log(startEvt);
 
         window.addEventListener(moveEvt, this.figure.update.bind(this.figure), false);
         window.addEventListener(startEvt, this.figure.startClick.bind(this.figure), false);
