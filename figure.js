@@ -35,8 +35,8 @@ export class Figure {
         if (navigator.userAgent.indexOf('Mobile') != -1) {
             if (this.isClick) {
                 this.start = {
-                    x: event.originalEvent.touches[0].pageX,
-                    y: event.originalEvent.touches[0].pageY,
+                    x: event.changedTouches[0].clientX,
+                    y: event.changedTouches[0].clientY,
                 };
 
                 this.isClick = null;
@@ -44,8 +44,8 @@ export class Figure {
             
             if (this.isClick !== false) {
                 this.end = {
-                    x: event.originalEvent.touches[0].pageX,
-                    y: event.originalEvent.touches[0].pageY,
+                    x: event.changedTouches[0].clientX,
+                    y: event.changedTouches[0].clientY,
                 };
             }
         } else {
