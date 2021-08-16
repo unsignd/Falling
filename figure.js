@@ -182,11 +182,13 @@ export class Figure {
                 rect.vt2.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
                 rect.vt3.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
                 rect.vt4.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
+                break;
             case 1:
                 rect.vt1.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
                 rect.vt2.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
                 rect.vt3.y -= Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
                 rect.vt4.y += Math.random() * this.getSide(rect.vt1, rect.vt4) / 30;
+                break;
         }
     }
 }
