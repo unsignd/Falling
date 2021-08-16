@@ -1,5 +1,6 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/unsignd/falling/badge)](https://www.codefactor.io/repository/github/unsignd/falling)
 # Falling
+[![CodeFactor](https://www.codefactor.io/repository/github/unsignd/falling/badge)](https://www.codefactor.io/repository/github/unsignd/falling)
+
 Expressed Shaking Waves And Squares That Fall On Them
 
 <img src="./screenShot.jpg" width="700" height="400">
