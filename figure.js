@@ -32,20 +32,38 @@ export class Figure {
     }
 
     update(event) {
-        if (this.isClick) {
-            this.start = {
-                x: event.clientX,
-                y: event.clientY,
-            };
+        if (navigator.userAgent.indexOf('Mobile') != -1) {
+            if (this.isClick) {
+                this.start = {
+                    x: event.originalEvent.touches[0].pageX,
+                    y: event.originalEvent.touches[0].pageY,
+                };
 
-            this.isClick = null;
-        } 
-        
-        if (this.isClick !== false) {
-            this.end = {
-                x: event.clientX,
-                y: event.clientY,
-            };
+                this.isClick = null;
+            } 
+            
+            if (this.isClick !== false) {
+                this.end = {
+                    x: event.originalEvent.touches[0].pageX,
+                    y: event.originalEvent.touches[0].pageY,
+                };
+            }
+        } else {
+            if (this.isClick) {
+                this.start = {
+                    x: event.clientX,
+                    y: event.clientY,
+                };
+
+                this.isClick = null;
+            } 
+            
+            if (this.isClick !== false) {
+                this.end = {
+                    x: event.clientX,
+                    y: event.clientY,
+                };
+            }
         }
     }
 
