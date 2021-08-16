@@ -4,7 +4,7 @@
 <img src="./projImg.png">
 
 ## Site
-**https://unsignd.github.io/Falling/**
+You can see project on https://unsignd.github.io/Falling/
 
 ## Credit
 Develop by [unsignd](https://github.com/unsignd)
