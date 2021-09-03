@@ -4,7 +4,7 @@
 <img src="./projImg.png">
 
 ## Site
-You can see the project on https://unsignd.github.io/Falling/
+You can see the project on https://falling.unsignd.me/
 <br>
 And [Behance](https://www.behance.net/gallery/125466815/Falling)
 
