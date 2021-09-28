@@ -9,7 +9,7 @@ You can see the project on https://falling.unsignd.me/
 And [Behance](https://www.behance.net/gallery/125466815/Falling)
 
 ## Credit
-Develop by [unsignd](https://github.com/unsignd)
+Develop by [Yejun Kim](https://github.com/unsignd)
 <br>
 <br>
 Wave refer to [Interactive Developer](https://www.youtube.com/watch?v=LLfhY4eVwDY&ab)
